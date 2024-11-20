@@ -11,10 +11,11 @@
     <title>LOGIN TEST</title>
 </head>
 <body>
-<form action="login_result.jsp" method="post">
-    <input type = "number" name="num1">
-    <input type = "number" name="num2">
-    <button type="submit">전송</button>
+<h1>미니실습 로그인 화면 서블릿으로 접근해보기</h1>
+<form action="/login/result" method="post">
+    <input type = "text" name="id">
+    <input type = "number" name="password">
+    <button type="submit">로그인</button>
 </form>
 </body>
 </html>
