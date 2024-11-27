@@ -1,7 +1,5 @@
-package com.busanit501.subinserver.food.controller;
+package com.busanit501.subinserver.member.controller;
 
-import com.busanit501.subinserver.food.dto.FoodDTO;
-import com.busanit501.subinserver.food.service.FoodService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,18 +11,18 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet(name = "FoodRegController",urlPatterns = "/food/register")
-public class FoodRegController extends HttpServlet {
+@WebServlet(name = "MemberRegController",urlPatterns = "/member/register")
+public class MemberRegController extends HttpServlet {
 
     // 서비스를 포함 하기. 의존하기.
-    private FoodService foodService = FoodService.INSTANCE;
+    private MemberService memberService = MemberService.INSTANCE;
     // 날짜 포맷팅
     private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //화면 전달.
-        request.getRequestDispatcher("/WEB-INF/food/foodReg.jsp")
+        request.getRequestDispatcher("/WEB-INF/member/memberReg.jsp")
                 .forward(request, response);
     }
 
@@ -36,19 +34,20 @@ public class FoodRegController extends HttpServlet {
         // POST 처리 후, Redirect , Get 호출,
         // 무한 post 방지 효과, 화면 전환 효과.
         // 임시로 담을  DTO 인스턴스 필요함.
-        FoodDTO foodDTO = FoodDTO.builder()
+        MemberDTO memberDTO = MemberDTO.builder()
                 .title(request.getParameter("title"))
-                .dueDate(LocalDate.parse(request.getParameter("dueDate"), DATE_TIME_FORMATTER))
+                .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
                 .build();
         // Controller -> Service
         try {
-            foodService.register(foodDTO);
+            memberService.register(memberDTO);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         System.out.println("doPost : 글쓰기 처리하는 로직, 디비 연결 전, 리스트로 이동함");
-        response.sendRedirect("/food/list");
+        response.sendRedirect("/member/list");
 
     }
 }
+

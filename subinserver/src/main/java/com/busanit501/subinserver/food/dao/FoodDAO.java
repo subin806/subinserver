@@ -1,7 +1,7 @@
 package com.busanit501.subinserver.food.dao;
 
 import com.busanit501.subinserver.food.vo.FoodVO;
-import com.busanit501.subinserver.jdbex.dao.ConnectionUtil;
+import com.busanit501.subinserver.jdbcex.dao.ConnectionUtil;
 import lombok.Cleanup;
 
 import java.sql.*;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodDAO {
-    //추가
+
     public void insert(FoodVO foodVO) throws SQLException {
 
         String sql = "insert into tbl_food (title, dueDate, finished) " +
@@ -20,14 +20,17 @@ public class FoodDAO {
         preparedStatement.setDate(2, Date.valueOf(foodVO.getDueDate()));
         preparedStatement.setBoolean(3, foodVO.isFinished());
         preparedStatement.executeUpdate();
-    }
+    } //insert
 
-//조회
+    //2
+    // select , DB에서 전체 조회.
     public List<FoodVO> selectAll() throws SQLException {
         String sql = "select * from tbl_food";
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
         @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+        // 넘어온 데이터를 임시로 보관할 리스트 인스턴스 만들고,
+        // 반복문 통해서, 넘어온 각행을 리스트에 요소로 하나씩 담기.
         List<FoodVO> list = new ArrayList<>();
         while (resultSet.next()) {
             FoodVO foodVO = FoodVO.builder()
@@ -40,8 +43,9 @@ public class FoodDAO {
         }
         return list;
     }
-//하나조회
-    public static FoodVO selectOne(Long fno) throws SQLException {
+
+    //3, 하나 조회. 상세보기.
+    public FoodVO selectOne(Long fno) throws SQLException {
         String sql = "select * from tbl_food where fno = ?";
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -60,32 +64,28 @@ public class FoodDAO {
         return foodVO;
     }
 
-    //수정
+    //4.수정
     public void updateOne(FoodVO foodVO) throws SQLException {
         String sql = " update tbl_food set title=?, dueDate=?, finished=?" +
                 " where fno=?";
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        // 화면에서 넘겨받은 변경할 데이터를 DTO -> VO 변환 후에(서비스에서 할 예정.)
-        // VO 에서 꺼내서, 디비로 데이터 전달하는 과정.
         preparedStatement.setString(1, foodVO.getTitle());
         preparedStatement.setDate(2, Date.valueOf(foodVO.getDueDate()));
         preparedStatement.setBoolean(3,foodVO.isFinished());
         preparedStatement.setLong(4,foodVO.getFno());
         preparedStatement.executeUpdate();
+
     }
 
-    //삭제
-    public void deleteTodo(Long fno) throws SQLException {
+    //5.삭제
+    public void deleteFood(Long fno) throws SQLException {
         String sql = "delete from tbl_food where fno = ?";
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, fno);
         preparedStatement.executeUpdate();
     }
-
-
-
 
     public String getTime() {
         String now = null;
@@ -105,6 +105,8 @@ public class FoodDAO {
 
     public String getTime2() throws SQLException {
         String now = null;
+        // 자동으로 디비의 connection 반납하는 방법2
+        // @Cleanup
         @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
         PreparedStatement preparedStatement =
                 connection.prepareStatement("select now()");
@@ -113,4 +115,7 @@ public class FoodDAO {
         now = resultSet.getString(1);
         return now;
     }
-}
+
+
+
+} //class

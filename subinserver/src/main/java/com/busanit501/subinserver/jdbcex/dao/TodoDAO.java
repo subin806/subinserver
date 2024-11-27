@@ -1,6 +1,6 @@
-package com.busanit501.subinserver.jdbex.dao;
+package com.busanit501.subinserver.jdbcex.dao;
 
-import com.busanit501.subinserver.jdbex.vo.TodoVO;
+import com.busanit501.subinserver.jdbcex.vo.TodoVO;
 import lombok.Cleanup;
 
 import java.sql.*;

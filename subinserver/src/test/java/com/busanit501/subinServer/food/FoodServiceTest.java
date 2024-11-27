@@ -3,11 +3,13 @@ package com.busanit501.subinServer.food;
 import com.busanit501.subinserver.food.dto.FoodDTO;
 import com.busanit501.subinserver.food.service.FoodService;
 import lombok.extern.log4j.Log4j2;
+import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 @Log4j2
 public class FoodServiceTest {
@@ -27,5 +29,20 @@ public class FoodServiceTest {
                 .dueDate(LocalDate.now())
                 .build();
         foodService.register(foodDTO);
+    }
+        // 전체 조회
+    @Test
+    public void testSelectAll() throws SQLException {
+        List<FoodDTO> dtoList = foodService.listAll();
+       for (FoodDTO foodDTO:dtoList) {
+           log.info(foodDTO);
+        }
+    }
+
+    // 하나조회, 상세보기.
+    @Test
+    public void testSelectOne() throws SQLException {
+        val foodDTO = foodService.get(14L);
+        log.info("하나 조회. foodDTO " + foodDTO);
     }
 }

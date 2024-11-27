@@ -1,9 +1,9 @@
-package com.busanit501.subinserver.jdbex.service;
+package com.busanit501.subinserver.jdbcex.service;
 
-import com.busanit501.subinserver.jdbex.dao.TodoDAO;
-import com.busanit501.subinserver.jdbex.dto.TodoDTO;
-import com.busanit501.subinserver.jdbex.util.MapperUtil;
-import com.busanit501.subinserver.jdbex.vo.TodoVO;
+import com.busanit501.subinserver.jdbcex.dao.TodoDAO;
+import com.busanit501.subinserver.jdbcex.dto.TodoDTO;
+import com.busanit501.subinserver.jdbcex.util.MapperUtil;
+import com.busanit501.subinserver.jdbcex.vo.TodoVO;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
 @Log4j2
 public enum TodoService {
     INSTANCE;
+    // 2가지, 다른 클래스에 의존함.
+    // 1) 모델 맵퍼 기능
+    // 2) DAO 기능
 
     private TodoDAO todoDAO;
     private ModelMapper modelMapper;
@@ -26,7 +29,6 @@ public enum TodoService {
 
     //1
     // register
-
     public void register(TodoDTO todoDTO) throws SQLException {
 
         // 모델 맵퍼 이용시.
@@ -56,11 +58,23 @@ public enum TodoService {
         log.info("tno : " + tno);
         ///  디비에서 하나 조회 결과 받았음.
         TodoVO todoVO = todoDAO.selectOne(tno);
-        // VO -> DTO 변환 작업.
         TodoDTO todoDTO = modelMapper.map(todoVO,TodoDTO.class);
         return todoDTO;
 
     }
 
+    //4 수정 기능
+    public void update(TodoDTO todoDTO) throws SQLException {
+        log.info("todoDTO : " + todoDTO);
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+        todoDAO.updateOne(todoVO);
+
+    }
+
+    //5 삭제 기능.
+public void delete(Long tno) throws SQLException {
+        todoDAO.deleteTodo(tno);
+}
 
 }
+

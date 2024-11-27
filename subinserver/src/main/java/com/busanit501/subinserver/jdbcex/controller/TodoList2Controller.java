@@ -1,7 +1,7 @@
-package com.busanit501.subinserver.jdbex.controller;
+package com.busanit501.subinserver.jdbcex.controller;
 
-import com.busanit501.subinserver.jdbex.dto.TodoDTO;
-import com.busanit501.subinserver.jdbex.service.TodoService;
+import com.busanit501.subinserver.jdbcex.dto.TodoDTO;
+import com.busanit501.subinserver.jdbcex.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +23,6 @@ public class TodoList2Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //
         log.info("doGet TodoList2Controller 확인");
         try {
             // 서비스에 외주 주고, 전체 목록 리스트 받아오기.

@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Food, 미니실습 fno 번호로 하나 조회하는 화면, 상세보기와 같은 역할. </h1>
-fno : ${dto.fno}
+<h1>tno 번호로 하나 조회하는 화면, 상세보기와 같은 역할. </h1>
+tno : ${dto.tno}
 title : ${dto.title}
 dueDate : ${dto.dueDate}
 </body>

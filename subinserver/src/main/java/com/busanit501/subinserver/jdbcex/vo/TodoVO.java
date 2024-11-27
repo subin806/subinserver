@@ -1,4 +1,4 @@
-package com.busanit501.subinserver.jdbex.vo;
+package com.busanit501.subinserver.jdbcex.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

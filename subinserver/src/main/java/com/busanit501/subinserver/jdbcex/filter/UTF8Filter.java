@@ -1,4 +1,4 @@
-package com.busanit501.subinserver.jdbex.filter;
+package com.busanit501.subinserver.jdbcex.filter;
 
 import lombok.extern.log4j.Log4j2;
 

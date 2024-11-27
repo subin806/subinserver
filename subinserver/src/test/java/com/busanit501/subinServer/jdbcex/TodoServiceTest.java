@@ -1,7 +1,7 @@
 package com.busanit501.subinServer.jdbcex;
 
-import com.busanit501.subinserver.jdbex.dto.TodoDTO;
-import com.busanit501.subinserver.jdbex.service.TodoService;
+import com.busanit501.subinserver.jdbcex.dto.TodoDTO;
+import com.busanit501.subinserver.jdbcex.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,4 +47,21 @@ public class TodoServiceTest {
         log.info("하나 조회. todoDTO " + todoDTO);
     }
 
+    //하나수정
+    @Test
+    public void testUpdate() throws SQLException {
+        TodoDTO todoDTO = TodoDTO.builder()
+                .tno(3L)
+                .title("수정된 내용입니다.")
+                .dueDate(LocalDate.now())
+                .finished(false)
+                .build();
+        todoService.update(todoDTO);
+    }
+
+    //하나삭제
+    @Test
+    public void testDelete() throws SQLException {
+        todoService.delete(1L);
+    }
 }

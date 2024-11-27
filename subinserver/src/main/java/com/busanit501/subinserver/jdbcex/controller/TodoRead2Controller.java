@@ -1,9 +1,9 @@
-package com.busanit501.subinserver.jdbex.controller;
+package com.busanit501.subinserver.jdbcex.controller;
 
 
 
-import com.busanit501.subinserver.jdbex.dto.TodoDTO;
-import com.busanit501.subinserver.jdbex.service.TodoService;
+import com.busanit501.subinserver.jdbcex.dto.TodoDTO;
+import com.busanit501.subinserver.jdbcex.service.TodoService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

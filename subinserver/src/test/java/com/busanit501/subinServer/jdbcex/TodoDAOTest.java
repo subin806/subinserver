@@ -1,7 +1,7 @@
 package com.busanit501.subinServer.jdbcex;
 
-import com.busanit501.subinserver.jdbex.dao.TodoDAO;
-import com.busanit501.subinserver.jdbex.vo.TodoVO;
+import com.busanit501.subinserver.jdbcex.dao.TodoDAO;
+import com.busanit501.subinserver.jdbcex.vo.TodoVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

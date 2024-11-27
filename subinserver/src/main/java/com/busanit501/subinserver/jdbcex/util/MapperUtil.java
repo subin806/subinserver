@@ -1,4 +1,4 @@
-package com.busanit501.subinserver.jdbex.util;
+package com.busanit501.subinserver.jdbcex.util;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
