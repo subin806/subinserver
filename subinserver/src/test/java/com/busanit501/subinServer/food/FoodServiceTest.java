@@ -1,0 +1,31 @@
+package com.busanit501.subinServer.food;
+
+import com.busanit501.subinserver.food.dto.FoodDTO;
+import com.busanit501.subinserver.food.service.FoodService;
+import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
+import java.time.LocalDate;
+
+@Log4j2
+public class FoodServiceTest {
+    private FoodService foodService;
+
+    @BeforeEach
+    public void ready() {
+        foodService = FoodService.INSTANCE;
+    }
+
+    // 등록
+    @Test
+    public void testInsert() throws SQLException {
+        // 더미 데이터, 화면에서 전달 받은 TodoDTO
+        FoodDTO foodDTO = FoodDTO.builder()
+                .title("샘플 작업 1127, 1교시")
+                .dueDate(LocalDate.now())
+                .build();
+        foodService.register(foodDTO);
+    }
+}

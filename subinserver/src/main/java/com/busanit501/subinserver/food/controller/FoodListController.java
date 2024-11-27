@@ -17,8 +17,8 @@ public class FoodListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("doGet : FoodListController");
 
-        List<FoodDTO> foodList = FoodService.INSTANCE.getList();
-        request.setAttribute("list", foodList);
+        //List<FoodDTO> foodList = FoodService.INSTANCE.getList();
+       // request.setAttribute("list", foodList);
 
         request.getRequestDispatcher("/WEB-INF/food/foodList.jsp")
                 .forward(request, response);
