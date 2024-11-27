@@ -1,6 +1,7 @@
 package com.busanit501.subinserver.member.controller;
 
 
+import com.busanit501.subinserver.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;

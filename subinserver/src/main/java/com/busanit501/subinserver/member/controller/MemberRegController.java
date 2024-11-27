@@ -1,6 +1,9 @@
 package com.busanit501.subinserver.member.controller;
 
 
+import com.busanit501.subinserver.member.dto.MemberDTO;
+import com.busanit501.subinserver.member.service.MemberService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,8 +38,8 @@ public class MemberRegController extends HttpServlet {
         // 무한 post 방지 효과, 화면 전환 효과.
         // 임시로 담을  DTO 인스턴스 필요함.
         MemberDTO memberDTO = MemberDTO.builder()
-                .title(request.getParameter("title"))
-                .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
+                .id(request.getParameter("id"))
+                .password(request.getParameter("password"))
                 .build();
         // Controller -> Service
         try {

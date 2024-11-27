@@ -1,6 +1,8 @@
 package com.busanit501.subinserver.member.controller;
 
 
+import com.busanit501.subinserver.member.dto.MemberDTO;
+import com.busanit501.subinserver.member.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
@@ -11,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Log4j2
 @WebServlet(name = "MemberUpdateController",urlPatterns = "/member/update")
 public class MemberUpdateController extends HttpServlet {
     private MemberService memberService = MemberService.INSTANCE;
-    private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//    private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,4 +37,23 @@ public class MemberUpdateController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            MemberDTO memberDTO = new MemberDTO();
+            memberDTO.setMno(Long.parseLong(request.getParameter("mno")));
+            memberDTO.setId(request.getParameter("id"));
+            memberDTO.setPassword(request.getParameter("password"));
+
+            memberService.update(memberDTO);
+
+            response.sendRedirect("/member/list");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "회원 정보를 수정하는데 오류가 발생했습니다.");
+        }
+    }
+
 }
+

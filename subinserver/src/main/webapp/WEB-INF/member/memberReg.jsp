@@ -11,6 +11,17 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>회원가입하기</h1>
+<form action="/member/register" method="post">
+    <div>
+        <input type="text" name="id" placeholder="id를 작성해주세요">
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="password를 작성해주세요">
+    </div>
+    <button type="reset">초기화</button>
+    <button type="submit">회원가입</button>
+</form>
 </body>
 </html>
+

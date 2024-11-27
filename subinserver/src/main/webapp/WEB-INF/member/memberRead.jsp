@@ -11,6 +11,20 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>My Info 상세보기 및 수정 및 삭제</h1>
+<div>
+    <input type="text" name="mno" value="${dto.mno}" readonly>
+</div>
+<div>
+    <input type="text" name="id" value="${dto.id}" readonly>
+</div>
+<div>
+    <input type="password" name="password" value="${dto.password}" readonly>
+</div>
+<div>
+    <a href="/member/update?mno=${dto.mno}">수정/삭제</a>
+    <a href="/member/list">목록가기</a>
+</div>
 </body>
 </html>
+
