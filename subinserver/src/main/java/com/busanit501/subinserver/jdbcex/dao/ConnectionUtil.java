@@ -1,4 +1,4 @@
-package com.busanit501.subinserver.jdbex.dao;
+package com.busanit501.subinserver.jdbcex.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
