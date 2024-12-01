@@ -4,6 +4,7 @@ import com.busanit501.subinserver.jdbcex.dto.TodoDTO;
 import com.busanit501.subinserver.jdbcex.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,13 @@ public class TodoList2Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // TestListener , 에 등록된 특정 변수에 접근,
+        // 그러면, 전역, 공유 자원 처럼 사용이 되어서,
+        // 어느 파일에서도 접근이 가능함,
+        ServletContext context = request.getServletContext();
+        String result = (String) context.getAttribute("appTestName");
+        log.info("TodoList2Controller ServletContext : 값 조회 확인중 : "+result);
+        //
         log.info("doGet TodoList2Controller 확인");
         try {
             // 서비스에 외주 주고, 전체 목록 리스트 받아오기.
@@ -37,3 +45,4 @@ public class TodoList2Controller extends HttpServlet {
 
     }
 }
+

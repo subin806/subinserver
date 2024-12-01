@@ -26,6 +26,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
     //1
     //jstl 추가,
     // https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl
@@ -48,7 +49,7 @@ dependencies {
     testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
 
-    //4
+    //4 HikariCP
     // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '6.2.1'
 
@@ -68,6 +69,7 @@ dependencies {
 // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '3.0.0-beta2'
 
+    // 7 spring core
     implementation group: 'org.springframework', name: 'spring-core', version: '5.3.19'
     implementation group: 'org.springframework', name: 'spring-context', version: '5.3.19'
     implementation group: 'org.springframework', name: 'spring-test', version: '5.3.19'
