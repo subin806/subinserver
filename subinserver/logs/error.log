@@ -1,0 +1,1 @@
+22:04:07.561 [Test worker] ERROR com.busanit501.subinServer.member.MemberServiceTest-dtoList is null. Check the listAll() method or database configuration.
